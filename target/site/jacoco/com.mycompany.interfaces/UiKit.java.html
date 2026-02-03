@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UiKit.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">interfaces</a> &gt; <a href="index.source.html" class="el_package">com.mycompany.interfaces</a> &gt; <span class="el_source">UiKit.java</span></div><h1>UiKit.java</h1><pre class="source lang-java linenums">/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.mycompany.interfaces;
+
+import java.awt.*;
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+
+public final class UiKit {
+    private UiKit() {}
+
+    public static void applyLookAndFeel() {
+        try {
+<span class="nc bnc" id="L16" title="All 2 branches missed.">            for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {</span>
+<span class="nc bnc" id="L17" title="All 2 branches missed.">                if (&quot;Nimbus&quot;.equalsIgnoreCase(info.getName())) {</span>
+<span class="nc" id="L18">                    UIManager.setLookAndFeel(info.getClassName());</span>
+<span class="nc" id="L19">                    break;</span>
+                }
+            }
+<span class="nc" id="L22">        } catch (Exception ignored) {}</span>
+<span class="nc" id="L23">    }</span>
+
+    public static JPanel wrap(JComponent c, int pad) {
+<span class="nc" id="L26">        JPanel p = new JPanel(new BorderLayout());</span>
+<span class="nc" id="L27">        p.setBorder(new EmptyBorder(pad, pad, pad, pad));</span>
+<span class="nc" id="L28">        p.add(c, BorderLayout.CENTER);</span>
+<span class="nc" id="L29">        return p;</span>
+    }
+
+    public static JLabel title(String text) {
+<span class="nc" id="L33">        JLabel l = new JLabel(text);</span>
+<span class="nc" id="L34">        l.setFont(l.getFont().deriveFont(Font.BOLD, 18f));</span>
+<span class="nc" id="L35">        return l;</span>
+    }
+
+    public static JLabel hint(String text) {
+<span class="nc" id="L39">        JLabel l = new JLabel(text);</span>
+<span class="nc" id="L40">        l.setForeground(new Color(90, 90, 90));</span>
+<span class="nc" id="L41">        return l;</span>
+    }
+
+    public static JButton primaryButton(String text) {
+<span class="nc" id="L45">        JButton b = new JButton(text);</span>
+<span class="nc" id="L46">        b.setFocusPainted(false);</span>
+<span class="nc" id="L47">        b.setFont(b.getFont().deriveFont(Font.BOLD, 13f));</span>
+<span class="nc" id="L48">        return b;</span>
+    }
+
+    public static void ok(Component parent, String msg) {
+<span class="nc" id="L52">        JOptionPane.showMessageDialog(parent, msg, &quot;Éxito&quot;, JOptionPane.INFORMATION_MESSAGE);</span>
+<span class="nc" id="L53">    }</span>
+
+    public static void error(Component parent, String msg) {
+<span class="nc" id="L56">        JOptionPane.showMessageDialog(parent, msg, &quot;Error&quot;, JOptionPane.ERROR_MESSAGE);</span>
+<span class="nc" id="L57">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

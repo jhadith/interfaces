@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CitaService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">interfaces</a> &gt; <a href="index.source.html" class="el_package">service</a> &gt; <span class="el_source">CitaService.java</span></div><h1>CitaService.java</h1><pre class="source lang-java linenums">package service;
+
+import java.time.LocalDateTime;
+import model.Cita;
+import repository.CitaRepository;
+
+public class CitaService {
+
+    private final CitaRepository repo;
+
+<span class="nc" id="L11">    public CitaService() {</span>
+<span class="nc" id="L12">        this.repo = new CitaRepository();</span>
+<span class="nc" id="L13">    }</span>
+
+    // Constructor para pruebas
+<span class="fc" id="L16">    public CitaService(CitaRepository repo) {</span>
+<span class="fc" id="L17">        this.repo = repo;</span>
+<span class="fc" id="L18">    }</span>
+
+    public void registrarCita(Cita c) {
+<span class="fc bfc" id="L21" title="All 2 branches covered.">        if (c.getFechaHora().isBefore(LocalDateTime.now())) {</span>
+<span class="fc" id="L22">            throw new IllegalArgumentException(&quot;No se puede agendar en el pasado.&quot;);</span>
+        }
+<span class="fc bfc" id="L24" title="All 2 branches covered.">        if (repo.existsByFechaHora(c.getFechaHora())) {</span>
+<span class="fc" id="L25">            throw new IllegalStateException(&quot;Ese horario ya está ocupado.&quot;);</span>
+        }
+<span class="fc" id="L27">        repo.insert(c);</span>
+<span class="fc" id="L28">    }</span>
+
+    public Cita buscarPorId(String id) {
+<span class="fc" id="L31">        return repo.findById(id);</span>
+    }
+
+    public void confirmarCita(String id, String personal) {
+<span class="fc" id="L35">        repo.updateEstadoPersonal(id, &quot;Confirmada&quot;, personal);</span>
+<span class="fc" id="L36">    }</span>
+
+    public void eliminarCita(String id) {
+<span class="fc" id="L39">        repo.deleteById(id);</span>
+<span class="fc" id="L40">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

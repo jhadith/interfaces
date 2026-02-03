@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Interfaces.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">interfaces</a> &gt; <a href="index.source.html" class="el_package">com.mycompany.interfaces</a> &gt; <span class="el_source">Interfaces.java</span></div><h1>Interfaces.java</h1><pre class="source lang-java linenums">/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ */
+
+package com.mycompany.interfaces;
+
+import java.awt.GridLayout;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.SwingUtilities;
+import javax.swing.border.EmptyBorder;
+
+/**
+ *
+ * @author Administrador
+ */
+<span class="nc" id="L19">public class Interfaces {</span>
+
+   public static void main(String[] args) {
+<span class="nc" id="L22">        UiKit.applyLookAndFeel();</span>
+
+<span class="nc" id="L24">        SwingUtilities.invokeLater(() -&gt; {</span>
+<span class="nc" id="L25">            JFrame f = new JFrame(&quot;Prototipos HU-01 a HU-12&quot;);</span>
+<span class="nc" id="L26">            f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);</span>
+<span class="nc" id="L27">            f.setSize(520, 520);</span>
+<span class="nc" id="L28">            f.setLocationRelativeTo(null);</span>
+
+<span class="nc" id="L30">            JPanel p = new JPanel(new GridLayout(0, 1, 10, 10));</span>
+<span class="nc" id="L31">            p.setBorder(new EmptyBorder(14, 14, 14, 14));</span>
+
+<span class="nc" id="L33">            p.add(btn(&quot;HU-01 Agendar&quot;, () -&gt; new HU01AgendarCitaFrame().setVisible(true)));</span>
+<span class="nc" id="L34">            p.add(btn(&quot;HU-02 Disponibilidad&quot;, () -&gt; new HU02DisponibilidadTiempoRealFrame().setVisible(true)));</span>
+<span class="nc" id="L35">            p.add(btn(&quot;HU-03 Confirmación&quot;, () -&gt; new HU03ConfirmacionCitaFrame().setVisible(true)));</span>
+           /* p.add(btn(&quot;HU-04 Cancelar/Reprogramar&quot;, () -&gt; new HU04CancelacionReprogramacionFrame().setVisible(true)));
+            p.add(btn(&quot;HU-05 Horarios Personal&quot;, () -&gt; new HU05GestionHorariosPersonalFrame().setVisible(true)));
+            p.add(btn(&quot;HU-06 Usuarios Admin&quot;, () -&gt; new HU06GestionUsuariosAdminFrame().setVisible(true)));
+            p.add(btn(&quot;HU-07 Notificaciones&quot;, () -&gt; new HU07NotificacionesCambiosFrame().setVisible(true)));
+            p.add(btn(&quot;HU-08 Historial&quot;, () -&gt; new HU08HistorialCitasFrame().setVisible(true)));
+            p.add(btn(&quot;HU-09 Marcar Atendida&quot;, () -&gt; new HU09MarcarAtendidaFrame().setVisible(true)));
+            p.add(btn(&quot;HU-10 Solapamientos&quot;, () -&gt; new HU10ValidacionSolapamientosFrame().setVisible(true)));
+            p.add(btn(&quot;HU-11 Reportes&quot;, () -&gt; new HU11ReportesGestionFrame().setVisible(true)));
+            p.add(btn(&quot;HU-12 Acceso Web&quot;, () -&gt; new HU12AccesoWebResponsiveFrame().setVisible(true)));
+*/
+<span class="nc" id="L46">            f.setContentPane(new JScrollPane(p));</span>
+<span class="nc" id="L47">            f.setVisible(true);</span>
+<span class="nc" id="L48">        });</span>
+<span class="nc" id="L49">    }</span>
+
+    private static JButton btn(String text, Runnable action) {
+<span class="nc" id="L52">        JButton b = UiKit.primaryButton(text);</span>
+<span class="nc" id="L53">        b.addActionListener(e -&gt; action.run());</span>
+<span class="nc" id="L54">        return b;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

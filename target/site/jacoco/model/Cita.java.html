@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Cita.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">interfaces</a> &gt; <a href="index.source.html" class="el_package">model</a> &gt; <span class="el_source">Cita.java</span></div><h1>Cita.java</h1><pre class="source lang-java linenums">/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package model;
+
+import java.time.LocalDateTime;
+
+public class Cita {
+ private String id;             // ej: CITA-8F12ABCD
+    private String servicio;        // Medicina General...
+    private LocalDateTime fechaHora;
+    private String estado;          // Asignado / Confirmada / Cancelada
+    private String personal;        // Dr./Dra.
+
+<span class="nc" id="L16">    public Cita() {}</span>
+
+<span class="fc" id="L18">    public Cita(String id, String servicio, LocalDateTime fechaHora, String estado, String personal) {</span>
+<span class="fc" id="L19">        this.id = id;</span>
+<span class="fc" id="L20">        this.servicio = servicio;</span>
+<span class="fc" id="L21">        this.fechaHora = fechaHora;</span>
+<span class="fc" id="L22">        this.estado = estado;</span>
+<span class="fc" id="L23">        this.personal = personal;</span>
+<span class="fc" id="L24">    }</span>
+
+    // Getters y Setters
+<span class="fc" id="L27">    public String getId() { return id; }</span>
+<span class="nc" id="L28">    public String getServicio() { return servicio; }</span>
+<span class="fc" id="L29">    public LocalDateTime getFechaHora() { return fechaHora; }</span>
+<span class="fc" id="L30">    public String getPersonal() { return personal; }</span>
+<span class="fc" id="L31">    public String getEstado() { return estado; }</span>
+<span class="fc" id="L32">public void setEstado(String estado) { this.estado = estado; }</span>
+
+<span class="nc" id="L34">public void setId(String id) { this.id = id; }</span>
+<span class="nc" id="L35">public void setServicio(String servicio) { this.servicio = servicio; }</span>
+<span class="nc" id="L36">public void setFechaHora(LocalDateTime fechaHora) { this.fechaHora = fechaHora; }</span>
+
+<span class="fc" id="L38">public void setPersonal(String personal) { this.personal = personal; }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

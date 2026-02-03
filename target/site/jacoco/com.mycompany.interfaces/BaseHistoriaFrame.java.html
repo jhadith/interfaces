@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BaseHistoriaFrame.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">interfaces</a> &gt; <a href="index.source.html" class="el_package">com.mycompany.interfaces</a> &gt; <span class="el_source">BaseHistoriaFrame.java</span></div><h1>BaseHistoriaFrame.java</h1><pre class="source lang-java linenums">/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.mycompany.interfaces;
+
+import javax.swing.*;
+import javax.swing.border.*;
+import java.awt.*;
+import java.time.*;
+import java.util.Date;
+
+public abstract class BaseHistoriaFrame extends JFrame {
+
+    protected final JSpinner spFecha;
+    protected final JSpinner spHora;
+    protected final JButton btnConfirmar;
+
+    protected BaseHistoriaFrame(String huId, String titulo, String descripcionCorta) {
+<span class="nc" id="L20">        super(huId + &quot; - &quot; + titulo);</span>
+
+<span class="nc" id="L22">        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);</span>
+<span class="nc" id="L23">        setSize(560, 360);</span>
+<span class="nc" id="L24">        setLocationRelativeTo(null);</span>
+
+<span class="nc" id="L26">        JPanel root = new JPanel(new BorderLayout(12, 12));</span>
+<span class="nc" id="L27">        root.setBorder(new EmptyBorder(14, 14, 14, 14));</span>
+
+        // Header
+<span class="nc" id="L30">        JPanel header = new JPanel(new GridLayout(0, 1, 6, 6));</span>
+<span class="nc" id="L31">        header.add(UiKit.title(huId + &quot;: &quot; + titulo));</span>
+<span class="nc" id="L32">        header.add(UiKit.hint(&quot;&lt;html&gt;&lt;body style='width:520px'&gt;&quot; + descripcionCorta + &quot;&lt;/body&gt;&lt;/html&gt;&quot;));</span>
+<span class="nc" id="L33">        root.add(header, BorderLayout.NORTH);</span>
+
+        // Form
+<span class="nc" id="L36">        JPanel form = new JPanel(new GridBagLayout());</span>
+<span class="nc" id="L37">        form.setBorder(new CompoundBorder(</span>
+                new LineBorder(new Color(220, 220, 220), 1, true),
+                new EmptyBorder(12, 12, 12, 12)
+        ));
+
+<span class="nc" id="L42">        GridBagConstraints g = new GridBagConstraints();</span>
+<span class="nc" id="L43">        g.insets = new Insets(8, 8, 8, 8);</span>
+<span class="nc" id="L44">        g.fill = GridBagConstraints.HORIZONTAL;</span>
+<span class="nc" id="L45">        g.weightx = 1;</span>
+
+        // Fecha
+<span class="nc" id="L48">        g.gridx = 0; g.gridy = 0; g.weightx = 0;</span>
+<span class="nc" id="L49">        form.add(new JLabel(&quot;Fecha:&quot;), g);</span>
+
+<span class="nc" id="L51">        spFecha = new JSpinner(new SpinnerDateModel(new Date(), null, null, java.util.Calendar.DAY_OF_MONTH));</span>
+<span class="nc" id="L52">        JSpinner.DateEditor deFecha = new JSpinner.DateEditor(spFecha, &quot;yyyy-MM-dd&quot;);</span>
+<span class="nc" id="L53">        spFecha.setEditor(deFecha);</span>
+
+<span class="nc" id="L55">        g.gridx = 1; g.gridy = 0; g.weightx = 1;</span>
+<span class="nc" id="L56">        form.add(spFecha, g);</span>
+
+        // Hora
+<span class="nc" id="L59">        g.gridx = 0; g.gridy = 1; g.weightx = 0;</span>
+<span class="nc" id="L60">        form.add(new JLabel(&quot;Hora:&quot;), g);</span>
+
+<span class="nc" id="L62">        spHora = new JSpinner(new SpinnerDateModel(new Date(), null, null, java.util.Calendar.MINUTE));</span>
+<span class="nc" id="L63">        JSpinner.DateEditor deHora = new JSpinner.DateEditor(spHora, &quot;HH:mm&quot;);</span>
+<span class="nc" id="L64">        spHora.setEditor(deHora);</span>
+
+<span class="nc" id="L66">        g.gridx = 1; g.gridy = 1; g.weightx = 1;</span>
+<span class="nc" id="L67">        form.add(spHora, g);</span>
+
+<span class="nc" id="L69">        root.add(form, BorderLayout.CENTER);</span>
+
+        // Footer
+<span class="nc" id="L72">        JPanel footer = new JPanel(new FlowLayout(FlowLayout.RIGHT, 10, 0));</span>
+<span class="nc" id="L73">        btnConfirmar = UiKit.primaryButton(&quot;Confirmar&quot;);</span>
+<span class="nc" id="L74">        footer.add(btnConfirmar);</span>
+<span class="nc" id="L75">        root.add(footer, BorderLayout.SOUTH);</span>
+
+<span class="nc" id="L77">        setContentPane(root);</span>
+
+<span class="nc" id="L79">        btnConfirmar.addActionListener(e -&gt; {</span>
+<span class="nc" id="L80">            LocalDateTime ldt = getSelectedDateTime();</span>
+<span class="nc" id="L81">            String err = validateInputs(ldt);</span>
+<span class="nc bnc" id="L82" title="All 2 branches missed.">            if (err != null) {</span>
+<span class="nc" id="L83">                UiKit.error(this, err);</span>
+<span class="nc" id="L84">                return;</span>
+            }
+<span class="nc" id="L86">            onConfirm(ldt);</span>
+<span class="nc" id="L87">        });</span>
+<span class="nc" id="L88">    }</span>
+
+    protected LocalDateTime getSelectedDateTime() {
+<span class="nc" id="L91">        Date dFecha = (Date) spFecha.getValue();</span>
+<span class="nc" id="L92">        Date dHora = (Date) spHora.getValue();</span>
+
+<span class="nc" id="L94">        ZoneId zone = ZoneId.systemDefault();</span>
+
+<span class="nc" id="L96">        LocalDate fecha = dFecha.toInstant().atZone(zone).toLocalDate();</span>
+<span class="nc" id="L97">        LocalTime hora = dHora.toInstant().atZone(zone).toLocalTime().withSecond(0).withNano(0);</span>
+
+<span class="nc" id="L99">        return LocalDateTime.of(fecha, hora);</span>
+    }
+
+    /** Retorna null si todo OK, o un mensaje de error si falla validación. */
+    protected String validateInputs(LocalDateTime selected) {
+<span class="nc bnc" id="L104" title="All 2 branches missed.">        if (selected == null) return &quot;Fecha y hora inválidas.&quot;;</span>
+<span class="nc" id="L105">        return null;</span>
+    }
+
+    /** Implementa la lógica del botón Confirmar (y muestra alertas). */
+    protected abstract void onConfirm(LocalDateTime selected);
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>
